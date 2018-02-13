@@ -1,0 +1,4 @@
+development:
+  <<: *default
+  username: username
+  password: password

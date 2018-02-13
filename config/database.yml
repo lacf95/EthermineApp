@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: ethermineapp_development
+
+test:
+  <<: *default
+  database: ethermineapp_test
+
+production:
+  <<: *default
+  database: ethermineapp_production
+
+<% if File.exists?('config/database.local.yml') %>
+  <%= IO.read('config/database.local.yml') %>
+<% end %>

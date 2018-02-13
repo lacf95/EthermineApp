@@ -1,0 +1,13 @@
+{
+  "name": "EthermineApp",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.2.2",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "popper": "^1.0.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.11.1"
+  }
+}
