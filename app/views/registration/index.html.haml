@@ -1,10 +1,9 @@
 .container
-  .row
-    = form_with model: @registration, url: { action: "create" } , class: 'col-xs-10 offset-xs-1 col-md-4 offset-md-4' do |form|
-      .form-group
-        .card.text-center
-          %h2.card-header Sign Up
-          .card-block
+  .col-xs-10.offset-xs-1.col-md-4.offset-md-4
+    .card
+      .card-header 
+        %h5 Sign Up
+      = form_with model: @user, url: { action: "create" } , class: 'card-body' do |form|
         .form-group
           = form.label :firstname
           = form.text_field :first_name, class: 'form-control',placeholder: 'Your first name', type: 'text'
@@ -17,8 +16,10 @@
         .form-group
           = form.label :password
           = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
+        - @user.errors.full_messages.each do |msg|
+          .alert.alert-danger{role: 'alert'}
+            = msg
         = form.submit 'Sign Up', class: 'btn btn-primary', align: 'center'
-        .card-footer.text-muted 
-          Do you have an account?
-          =link_to 'Sign in', home_index_path
-      %hr
+      .card-footer 
+        Do you have an account?
+        =link_to 'Log in', home_index_path
