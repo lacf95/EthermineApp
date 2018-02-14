@@ -2,17 +2,23 @@
   .row
     = form_with model: @registration, url: { action: "create" } , class: 'col-xs-10 offset-xs-1 col-md-4 offset-md-4' do |form|
       .form-group
-        .h2{:align => 'center'} Sign Up
-        = form.label :firstname
-        = form.text_field :first_name, class: 'form-control',placeholder: 'Your first name', type: 'text'
-      .form-group
-        = form.label :lastname
-        = form.text_field :last_name, class: 'form-control',placeholder: 'Your last name', type: 'text'
-      .form-group
-        = form.label :email
-        = form.text_field :email, class: 'form-control', placeholder: 'Your email', type: 'email'
-      .form-group
-        = form.label :password
-        = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
-      = form.submit 'Sign Up', class: 'btn btn-primary'
-    %hr
+        .card.text-center
+          %h2.card-header Sign Up
+          .card-block
+        .form-group
+          = form.label :firstname
+          = form.text_field :first_name, class: 'form-control',placeholder: 'Your first name', type: 'text'
+        .form-group
+          = form.label :lastname
+          = form.text_field :last_name, class: 'form-control',placeholder: 'Your last name', type: 'text'
+        .form-group
+          = form.label :email
+          = form.text_field :email, class: 'form-control', placeholder: 'Your email', type: 'email'
+        .form-group
+          = form.label :password
+          = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
+        = form.submit 'Sign Up', class: 'btn btn-primary', align: 'center'
+        .card-footer.text-muted 
+          Do you have an account?
+          =link_to 'Sign in', home_index_path
+      %hr

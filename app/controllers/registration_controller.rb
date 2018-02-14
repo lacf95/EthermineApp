@@ -1,6 +1,6 @@
 class RegistrationController < ApplicationController
   def index
-    @registration = User.new
+    #@registration = User.new
   end
 
   def create
