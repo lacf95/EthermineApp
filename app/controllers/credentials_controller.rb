@@ -1,4 +1,8 @@
 class CredentialsController < ApplicationController
+  def index
+    @credential = Credential.new
+  end
+
   def create
     @credential = Credential.new(credential_params)
     if @credential.valid? && @credential.in?
@@ -6,7 +10,7 @@ class CredentialsController < ApplicationController
       render inline: "<h2>#{session[:user_id]}</h2>"
     else
       @credential.password = nil
-      render 'home/index'
+      render 'index'
     end
   end
 
