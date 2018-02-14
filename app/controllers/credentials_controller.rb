@@ -2,7 +2,7 @@ class CredentialsController < ApplicationController
   def create
     @credential = Credential.new(credential_params)
     if @credential.valid? && @credential.in?
-      session[:user_id] = @credential.user[:user_id]
+      session[:user_id] = @credential.user[:id]
       render inline: "<h2>#{session[:user_id]}</h2>"
     else
       @credential.password = nil

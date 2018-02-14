@@ -1,5 +1,3 @@
-require 'bcrypt'
-
 class Credential
   include ActiveModel::Model
   include ActiveModel::Validations
@@ -21,9 +19,8 @@ class Credential
   end
 
   def correct_password?
-    encrypted_pass = BCrypt::Password.create(password)
-    @user = User.find_by(email: email, password: encrypted_pass)
-    errors.add(:password, 'is incorrect') unless @user
-    @user
+    is_correct = @user.authenticate(password)
+    errors.add(:password, 'is incorrect') unless is_correct
+    is_correct
   end
 end
