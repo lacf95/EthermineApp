@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'login' => 'credentials#index'
   resources :users, only: %i[index]
-  resources :credentials, only: %i[create]
+  resources :credentials, only: %i[create destroy]
 end
