@@ -1,2 +1,19 @@
-%h3 Welcome
-
+.container
+  .col-xs-10.offset-xs-1.col-md-4.offset-md-4
+    .card
+      .card-header
+        %h5 Log in on Ethermine
+      = form_with model: @credential, local:true, class: 'card-body' do |form|
+        .form-group
+          = form.label :email
+          = form.text_field :email, class: 'form-control', placeholder: 'Your email', type: 'email'
+        .form-group
+          = form.label :password
+          = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
+        - @credential.errors.full_messages.each do |msg|
+          .alert.alert-danger{role: 'alert'}
+            = msg
+        = form.submit 'Log in', class: 'btn btn-primary'
+        %hr
+        New to Ethermine? 
+        = link_to 'Sign up', signup_path
