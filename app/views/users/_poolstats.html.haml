@@ -1,0 +1,13 @@
+#pool-stats
+  %h3
+    Current pool statistics
+  %p
+    Hashrate: 
+    = @pool.statistics.pool_stats['hashRate']
+    H/s
+  %p
+    Active miners: 
+    = @pool.statistics.pool_stats['miners']
+  %p
+    Active workers: 
+    = @pool.statistics.pool_stats['workers']
