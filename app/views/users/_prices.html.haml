@@ -1,0 +1,9 @@
+#price
+  %h3
+    Price
+  #price-usd
+    USD:
+    = @pool.statistics.price['usd']
+  #price-btc
+    BitCoin:
+    = @pool.statistics.price['btc']

@@ -1,12 +1,16 @@
 class CredentialsController < ApplicationController
+  def index
+    @credential = Credential.new
+  end
+
   def create
     @credential = Credential.new(credential_params)
     if @credential.valid? && @credential.in?
       session[:user_id] = @credential.user[:id]
-      render inline: "<h2>#{session[:user_id]}</h2>"
+      redirect_to home_index_path
     else
       @credential.password = nil
-      render 'home/index'
+      render 'index'
     end
   end
 

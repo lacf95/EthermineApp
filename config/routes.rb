@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   post 'registration/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
-  resources :credentials, only: %i[index create]
+  get 'login' => 'credentials#index'
+  resources :users, only: %i[index]
+  resources :credentials, only: %i[create]
 end
