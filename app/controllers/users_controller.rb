@@ -13,6 +13,5 @@ class UsersController < ApplicationController
     @pool_stats = stats.pool_stats
     @price = stats.price
     @network = ether.pool.network
-    @pool = EtherClient.new.pool
   end
 end
