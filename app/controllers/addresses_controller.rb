@@ -11,6 +11,7 @@ class AddressesController < ApplicationController
 
   def show
     findit
+    client = EtherClient.new(@address.address)
   end
 
   def edit
