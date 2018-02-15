@@ -6,8 +6,7 @@ class RegistrationController < ApplicationController
   def create
     @user = User.new(user_params)
     return render 'index' unless @user.save
-    credential = Credential.new(email: @user.email, password: @user.password)
-    session[:user_id] = credential.user[:id] if credential.in?
+    session[:user_id] = @user.id
     redirect_to home_index_path
   end
 
