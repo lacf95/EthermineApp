@@ -1,28 +1,29 @@
 .row
-  .col-md-12
-    %h4 My addresses 
-    .col
-      =link_to 'Add new address', new_address_path, class: 'btn btn-success float-sm-right'
-    %br
-    %br 
-    .table-responsive
-      %table#mytable.table.table-bordred.table-striped
-        %thead
-          %th Alias
-          %th Address
-          %th Edit
-          %th Delete
-        %tbody
-          -@addresses.each do |a|
-            %tr
-              %td
-                =a.alias
-              %td
-                =a.address
-              %td
-                =link_to 'Edit', edit_address_path(a)
-              %td
-                =link_to 'Destroy', address_path(a),
-                  method: :delete,
-                data: {confirm: 'Are you sure'}
-    .clearfix
+  .row
+    .col-md-12
+      %h4 My Addresses 
+      =link_to 'Add new address', new_address_path, class: 'btn btn-success float-right'
+      .table-responsive
+        %table#mytable.table.table-bordred.table-striped
+          %thead
+            %th Alias
+            %th Address
+            %th Show
+            %th Edit
+            %th Delete
+          %tbody
+            -@addresses.each do |a|
+              %tr
+                %td
+                  =a.alias
+                %td
+                  =a.address
+                %td
+                  =link_to 'Show', address_path(a)
+                %td
+                  =link_to 'Edit', edit_address_path(a)
+                %td
+                  =link_to 'Destroy', address_path(a),
+                    method: :delete,
+                    data: {confirm: 'Are you sure'}
+        .clearfix
