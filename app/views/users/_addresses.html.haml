@@ -1,0 +1,38 @@
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
+%script{:src => "http://getbootstrap.com/dist/js/bootstrap.min.js"}
+.container
+  .row
+    .col-md-12
+      %h4 
+      .table-responsive
+        %table#mytable.table.table-bordred.table-striped
+          %thead
+            %th Alias
+            %th Address
+            %th Edit
+            %th Delete
+          %tbody
+            -@addresses.each do |a|
+              %tr
+                %td
+                  =a.alias
+                %td
+                  =a.address
+                %td
+                  =link_to 'Edit', edit_address_path(a)
+                %td
+                  =link_to 'Destroy', address_path(a),
+                    method: :delete,
+                    data: {confirm: 'Are you sure'}
+
+                %br
+            %tr
+              %td
+              %td
+              %td
+              %td 
+                =link_to 'Add new address', new_address_path
+
+
+
+        .clearfix

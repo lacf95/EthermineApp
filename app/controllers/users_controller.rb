@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     general_ethermine
+    @addresses = @user.addresses
   end
 
   private
@@ -12,5 +13,6 @@ class UsersController < ApplicationController
     @pool_stats = stats.pool_stats
     @price = stats.price
     @network = ether.pool.network
+    @pool = EtherClient.new.pool
   end
 end
