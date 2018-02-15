@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     general_ethermine
+    @addresses = @user.addresses
   end
 
   private

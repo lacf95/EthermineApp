@@ -2,12 +2,12 @@
   .col-xs-10.offset-xs-1.col-md-4.offset-md-4
     .card
       .card-header
-        %h5 New Address!
-      = form_with model: @address, url: { action: "create" } , class: 'card-body' do |form|
+        %h5 Edit Address!
+      = form_with model: @address, url: { action: "update" } , class: 'card-body' do |form|
         .form-group
           = form.label :address
           = form.text_field :address, class: 'form-control', placeholder: 'Your address', type: 'text'
         .form-group
           = form.label :alias
           = form.text_field :alias, class: 'form-control', placeholder: 'Alias for this address', type: 'text'
-        = form.submit 'Add Address', class: 'btn btn-primary', align: 'center'
+        = form.submit 'Edit Address', class: 'btn btn-primary', align: 'center'
