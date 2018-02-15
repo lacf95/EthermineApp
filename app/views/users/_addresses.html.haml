@@ -2,15 +2,14 @@
   .row
     .col-md-12
       %h4 My Addresses 
-      =link_to 'Add new address', new_address_path, class: 'btn btn-success float-right'
+      .float-right
+        =link_to 'Add new address', new_address_path, class: 'btn btn-success'
       .table-responsive
         %table#mytable.table.table-bordred.table-striped
           %thead
             %th Alias
             %th Address
-            %th Show
-            %th Edit
-            %th Delete
+            %th Actions
           %tbody
             -@addresses.each do |a|
               %tr
