@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[index]
   resources :addresses
   resources :credentials, only: %i[create destroy]
+  resources :addresses
 end
