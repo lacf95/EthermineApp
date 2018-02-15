@@ -6,21 +6,19 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.user_id = session[:user_id]
-    if @address.save
-      redirect_to home_index_path
-    end
+    redirect_to home_index_path unless !@address.save
   end
 
   def show
-    @address = Address.find(params[:id])
+    findit
   end
 
   def edit
-    @address = Address.find(params[:id])
+    findit
   end
   
   def update
-    @address = Address.find(params[:id])
+    findit
     if @address.update(address_params)
       redirect_to @address
     else
@@ -29,13 +27,15 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    if @address.destroy
-      redirect_to home_index_path
-    end
+    findit
+    redirect_to home_index_path unless !@address.destroy
   end
 
   private
+
+  def findit
+    @address = Address.find(params[:id])
+  end
 
   def address_params
     params.require(:address).permit(:address,:alias)
