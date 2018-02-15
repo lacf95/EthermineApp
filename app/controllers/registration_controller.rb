@@ -5,7 +5,9 @@ class RegistrationController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
+      UserNotifierMailer.send_signup_email(@user.id).deliver
       redirect_to home_index_path
     end
   end
