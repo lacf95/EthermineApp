@@ -1,9 +1,11 @@
-#price
-  %h3
+#price.card-block
+  %h4.card-title
     Price
-  #price-usd
+  %div
     USD:
-    = @pool.statistics.price['usd']
-  #price-btc
+    %span.text-secondary
+      = @price['usd']
+  %div
     BitCoin:
-    = @pool.statistics.price['btc']
+    %span.text-secondary
+      = @price['btc']

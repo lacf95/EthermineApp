@@ -1,13 +1,16 @@
-#pool-stats
-  %h3
-    Current pool statistics
-  %p
+#pool-stats.card-block
+  %h4.card-title
+    Statistics
+  %div
     Hashrate: 
-    = @pool.statistics.pool_stats['hashRate']
+    %span.text-secondary
+      = @pool_stats['hashRate']
     H/s
-  %p
+  %div
     Active miners: 
-    = @pool.statistics.pool_stats['miners']
-  %p
+    %span.text-secondary
+      = @pool_stats['miners']
+  %div
     Active workers: 
-    = @pool.statistics.pool_stats['workers']
+    %span.text-secondary
+      = @pool_stats['workers']
