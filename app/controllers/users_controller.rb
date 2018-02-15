@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     general_ethermine
   end
 
+  private
+
   def general_ethermine
     ether = EtherClient.new
     stats = ether.pool.statistics
