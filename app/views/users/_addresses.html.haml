@@ -1,28 +1,47 @@
 .row
-  .row
-    .col-md-12
-      %h4 My Addresses 
-      .float-right
+  .col-md-12
+    %h3 My Addresses 
+    %hr
+    - if @user.active
+      .text-right
         =link_to 'Add new address', new_address_path, class: 'btn btn-success'
-      .table-responsive
-        %table#mytable.table.table-bordred.table-striped
-          %thead
-            %th Alias
-            %th Address
-            %th Actions
-          %tbody
-            -@addresses.each do |a|
-              %tr
-                %td
-                  =a.alias
-                %td
-                  =a.address
-                %td
-                  =link_to 'Show', address_path(a)
-                %td
-                  =link_to 'Edit', edit_address_path(a)
-                %td
-                  =link_to 'Destroy', address_path(a),
-                    method: :delete,
-                    data: {confirm: 'Are you sure'}
-        .clearfix
+    - else
+      .alert.alert-warning
+        %p You need to confirmate your account to be able to add your addresses.
+        %b
+          = link_to 'Send me the confirmation mail again', send_confirm_path
+    %br
+    - if @addresses.count == 0
+      .alert.alert-info
+        %p
+          Here are listed all your
+          %b addresses.
+        %p It seems you don't have any, add a new address to start.
+    - else
+      - @addresses.each do |a|
+        .card
+          .card-body
+            %h3.card-title
+              = link_to a.alias, address_path(a), class: 'text-info'
+            %h6.text-muted
+              = a.address
+            %hr
+            %h5.card-title
+              $ 
+              = number_to_human(a.statistics.usd_per_min)
+              %small.text-muted
+                per minute
+            %p.card-text
+              = number_to_human(a.statistics.btc_per_min)
+              %small.text-muted
+                Bitcoin per second
+            %p.card-text
+              = number_to_human(a.statistics.current_hashrate)
+              %small.text-muted
+                Hashes per minute
+          .card-footer.small.text-right
+            = link_to 'Show', address_path(a), class: 'card-link'
+            = link_to 'Edit', edit_address_path(a), class: 'card-link'
+            = link_to 'Delete', address_path(a), method: :delete,
+              data: {confirm: 'Are you sure'}, class: 'text-danger card-link'
+        %br

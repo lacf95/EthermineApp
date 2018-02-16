@@ -1,11 +1,12 @@
 #price.card-block
   %h4.card-title
     Price
-  %div
-    USD:
-    %span.text-secondary
-      = @price['usd']
-  %div
-    BitCoin:
-    %span.text-secondary
-      = @price['btc']
+  .card-text
+    $
+    = @price['usd']
+    %small.text-muted
+      USD
+  .card-text
+    = number_to_human(@price['btc'])
+    %small.text-muted
+      Bitcoin

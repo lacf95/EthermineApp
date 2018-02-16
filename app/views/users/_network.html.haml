@@ -1,28 +1,27 @@
 #network.card-block
   %h4.card-title
     Network
-  %div.text-muted
+  .card-text.text-muted
     = Time.at(@network.time).to_formatted_s(:short)
   %br
-  %div
-    Block time: 
-    %span.text-secondary
-      = @network.block_time
-  %div
-    Difficulty: 
-    %span.text-secondary
-      = @network.difficulty
-  %div
-    Hashrate: 
-    %span.text-secondary
-      = @network.hashrate
-    H/s
-  %div
-    USD: 
-    %span.text-secondary
-      = @network.usd
-  %div
-    BitCoin:
-    %span.text-secondary
-      = @network.btc
-
+  .card-text
+    = number_to_human(@network.block_time)
+    %small.text-muted
+      block time (in minutes)
+  .card-text
+    = number_to_human(@network.difficulty)
+    %small.text-muted
+      difficulty ratio
+  .card-text
+    = number_to_human(@network.hashrate)
+    %small.text-muted
+      hashes per second
+  .card-text
+    $
+    = @network.usd
+    %small.text-muted
+      USD
+  .card-text
+    = number_to_human(@network.btc)
+    %small.text-muted
+      Bitcoin
