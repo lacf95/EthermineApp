@@ -1,3 +1,88 @@
 =@address.alias
 = link_to 'home', home_index_path
-= #@pool.statisttics...
+.h3 HISTORY
+.table-responsive
+  %table#mytable.table.table-bordred.table-striped
+    %thead
+      %th Time
+      %th Reported Hashrate
+      %th Average Hashrate
+      %th Current Hashrate
+      %th Valid Shares
+      %th Stale Shares
+      %th Active Workers
+    %tbody
+      -@min_factory.history
+        %tr
+          %td= #history.time
+          %td= #history.reported_hashrate
+          %td= #history.average_hashrate
+          %td= #history.current_hashrate
+          %td= #history.valid_shares
+          %td= #history.stale_shares
+          %td= #history.active_workers
+.clearfix
+
+-#
+.h3 BLOCKS
+.table-responsive
+  %table#mytable.table.table-bordred.table-striped
+    %thead
+      %th Paid on
+      %th Number
+      %th Type
+      %th Amount 
+      %th tx hash
+    %tbody
+      -@blocks.each do |block|
+        %tr
+          %td= history.time
+          %td= history.reported_hashrate
+          %td= history.average_hashrate
+          %td= history.current_hashrate
+          %td= history.valid_shares
+          %td= history.stale_shares
+          %td= history.active_workers
+.clearfix
+
+- @blocks.each do |block|
+  =block.paidOn
+  =block.number
+  =block.type
+  =block.amount
+  =block.tx_hash
+  %br
+.h3 PAYOUTS
+- @payouts.each do |payout|
+  =payout.paid_on
+  =payout.start
+  =payout.end
+  =payout.amount
+  =payout.tx_hash
+  %br
+.h3 ROUDS
+- @rounds.each do |round|
+  =round.block
+  =round.amount
+  %br
+.h3 SETTINGS
+=#@settings.email
+=#@settings.monitor
+=#@settings.min_payout
+=@settings.ip
+%br
+.h3 STATISTICS
+=#@statistic.time
+=#@statistic.last_seen
+=#@statistic.reported_hashrate
+=#@statistic.average_hashrate
+=#@statistic.current_hashrate
+=#@statistic.valid_shares
+=#@statistic.invalid_shares
+=#@statistic.stale_shares
+=#@statistic.active_workers
+=#@statistic.unpaid
+=#@statistic.unconfirmed
+=#@statistic.coins_per_min
+=#@statistic.usd_per_min
+=#@statistic.btc_per_min

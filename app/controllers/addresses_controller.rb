@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  include Miner
   def new
     @address = Address.new
   end
@@ -12,6 +13,8 @@ class AddressesController < ApplicationController
   def show
     findit
     client = EtherClient.new(@address.address)
+    @min_factory = MinerFactory.new(client.miner)
+    binding.pry
   end
 
   def edit
@@ -42,4 +45,3 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:address,:alias)
   end
 end
-
