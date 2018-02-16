@@ -3,6 +3,6 @@
     Ethermine
     = image_tag ('/assets/doggo.png')
   .form-inline.my-2.my-lg-0
-    .btn.btn-outline-danger
-      = link_to 'Log Out', credential_path(1), method: :destroy
+    .float-right
+      = link_to 'Log Out', credential_path(:id), method: :destroy, class: 'btn btn-danger'
 %br
