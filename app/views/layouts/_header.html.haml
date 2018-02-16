@@ -1,6 +1,8 @@
-.navbar.navbar-expand-lg.navbar-light.bg-info
-  .navbar-brand Ethermine
-  .collapse.navbar-collapse
+.navbar.navbar-dark.bg-info
+  .navbar-brand
+    Ethermine
+    = image_tag ('/assets/doggo.png')
+  .form-inline.my-2.my-lg-0
     .btn.btn-outline-danger
-      Log Out
+      = link_to 'Log Out', credential_path(1), method: :destroy
 %br
