@@ -5,7 +5,6 @@ class RegistrationController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.new_token
     return render 'index' unless @user.save
     session[:user_id] = @user.id
     redirect_to home_index_path
