@@ -4,8 +4,10 @@ class MinerRounds
   end
 
   def block
+    @miner.try(:block)
   end
 
   def amount
+    @miner.try(:amount)
   end
 end

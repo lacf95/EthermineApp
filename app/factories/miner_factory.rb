@@ -1,5 +1,7 @@
 class MinerFactory
-  require 'miner/miner_history.rb'
+  require 'miner/miner_settings.rb'
+  require 'miner/miner_statistics.rb'
+	
   def initialize(miner)
     @miner = miner
   end
