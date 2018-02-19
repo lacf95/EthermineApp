@@ -1,47 +1,45 @@
 %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
 %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
-.row
-  .col-md-12
-    -a = @address
-    .card
-      .card-body
-        %h3.card-title
-          = link_to a.alias, address_path(a), class: 'text-info'
-        %h6.text-muted
+%br
+.container
+  #main.col-sm-offset-1.col-sm-10
+    .col-md-12
+      -a = @address
+      .card
+        .card-body
+          %h3.card-title
+            = link_to a.alias, address_path(a), class: 'text-info'
+          %h6.text-muted
           = a.address
-        %hr
-        %h5.card-title
-          $ 
-          = number_to_human(@min_factory.statistics.usd_per_min)
-          %small.text-muted
-            per minute
-        %p.card-text
-          = number_to_human(@min_factory.statistics.btc_per_min)
-          %small.text-muted
-            Bitcoin per second
-        %p.card-text
-          = number_to_human(@min_factory.statistics.current_hashrate)
-          %small.text-muted
-            Hashes per minute
-      .card-footer.small.text-right
-        = link_to 'Home', home_index_path, class: 'card-link'
-        = link_to 'Show', address_path(a), class: 'card-link'
-        = link_to 'Edit', edit_address_path(a), class: 'card-link'
-        = link_to 'Delete', address_path(a), method: :delete,
-          data: {confirm: 'Are you sure'}, class: 'text-danger card-link'
-      %br
-
+          %hr
+          %h5.card-title
+            $ 
+            = number_to_human(@min_factory.statistics.usd_per_min)
+            %small.text-muted
+              per minute
+          %p.card-text
+            = number_to_human(@min_factory.statistics.btc_per_min)
+            %small.text-muted
+              Bitcoin per second
+          %p.card-text
+            = number_to_human(@min_factory.statistics.current_hashrate)
+            %small.text-muted
+              Hashes per minute
+        .card-footer.small.text-right
+          = link_to 'Home', home_index_path, class: 'card-link'
+          = link_to 'Show', address_path(a), class: 'card-link'
+          = link_to 'Edit', edit_address_path(a), class: 'card-link'
+          = link_to 'Delete', address_path(a), method: :delete,
+      data: {confirm: 'Are you sure'}, class: 'text-danger card-link'
+%br
+%br
 
 %ul#myTab.nav.nav-tabs{:role => "tablist"}
   %li.nav-item
-    %a#history-tab.nav-link.active{"aria-controls" => "home", 
+    %a#history-tab.nav-link{"aria-controls" => "home", 
       "aria-selected" => "true", "data-toggle" => "tab", 
       :href => "#history", :role => "tab"} History 
-  %li.nav-item
-    %a#block-tab.nav-link{"aria-controls" => "profile", 
-      "aria-selected" => "false", "data-toggle" => "tab", 
-      :href => "#block", :role => "tab"} Blocks
   %li.nav-item
     %a#payout-tab.nav-link{"aria-controls" => "contact", 
       "aria-selected" => "false", "data-toggle" => "tab", 
@@ -59,10 +57,8 @@
       "aria-selected" => "false", "data-toggle" => "tab", 
       :href => "#statistic", :role => "tab"} Statistics
 
-
 #myTabContent.tab-content
   #history.tab-pane.fade.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
-    .h4.text-info History
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
@@ -74,19 +70,20 @@
           %th Stale Shares
           %th Active Workers
         %tbody
-          -@histories.each do |history|
+          -i=0
+          -while i < @history_size
             %tr
-              %td= history.time
-              %td= history.reported_hashrate
-              %td= history.average_hashrate
-              %td= history.current_hashrate
-              %td= history.valid_shares
-              %td= history.stale_shares
-              %td= history.active_workers
+              %td= @min_factory.history(i).time
+              %td= @min_factory.history(i).reported_hashrate
+              %td= @min_factory.history(i).average_hashrate
+              %td= @min_factory.history(i).current_hashrate
+              %td= @min_factory.history(i).valid_shares
+              %td= @min_factory.history(i).stale_shares
+              %td= @min_factory.history(i).active_workers
+            -i+=1
     .clearfix
 
   #block.tab-pane.fade{"aria-labelledby" => "block-tab", :role => "tabpanel"}
-    .h4.text-info BLOCKS
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
@@ -96,17 +93,18 @@
           %th Amount 
           %th Tx hash
         %tbody
-          -@blocks.each do |block|
+          -i=0
+          -while i < @blocks_size
             %tr
-              %td= block.paid_on
-              %td= block.number
-              %td= block.type
-              %td= block.amount
-              %td= block.tx_hash
+              %td= @min_factory.block(i).paid_on
+              %td= @min_factory.block(i).block.number
+              %td= @min_factory.block(i).block.type
+              %td= @min_factory.block(i).block.amount
+              %td= @min_factory.block(i).block.tx_hash
+            -i+=1
     .clearfix
 
   #payout.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
-    .h4.text-info PAYOUTS
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
@@ -116,31 +114,33 @@
           %th Amount 
           %th Tx hash
         %tbody
-          -@payouts.each do |payout|
+          -i=0
+          -while i < @payouts_size
             %tr
-              %td= payout.paid_on
-              %td= payout.start
-              %td= payout.end
-              %td= payout.amount
-              %td= payout.tx_hash
+              %td= @min_factory.payout(i).paid_on
+              %td= @min_factory.payout(i).start
+              %td= @min_factory.payout(i).end
+              %td= @min_factory.payout(i).amount
+              %td= @min_factory.payout(i).tx_hash
+            -i+=1
     .clearfix
 
   #round.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
-    .h4.text-info ROUNDS
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
           %th Amount 
           %th Tx hash
         %tbody
-          -@rounds.each do |round|
+          -i=0
+          -while i < @rounds_size
             %tr
-              %td= round.block
-              %td= round.amount
+              %td= @min_factory.rounds(i).block
+              %td= @min_factory.rounds(i).amount
+            -i+=1
     .clearfix
 
   #setting.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
-    .h3.text-info SETTINGS
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
@@ -154,10 +154,10 @@
             %td= @min_factory.settings.monitor
             %td= @min_factory.settings.min_payout
             %td= @min_factory.settings.ip
+          -i+=1
     .clearfix
 
   #statistic.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
-    .h3.text-info STATISTICS
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
         %thead
@@ -192,4 +192,3 @@
             %td= @min_factory.statistics.usd_per_min
             %td= @min_factory.statistics.btc_per_min
     .clearfix
-

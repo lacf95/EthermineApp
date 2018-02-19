@@ -11,9 +11,9 @@ class AddressesController < ApplicationController
 
   def show
     findit
-    client = EtherClient.new(@address.address)
-    @min_factory = MinerFactory.new(client.miner)
-    generate_options(client.miner)
+    @client = EtherClient.new(@address.address)
+    @min_factory = MinerFactory.new(@client.miner)
+    size
   end
 
   def edit
@@ -44,10 +44,10 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:address,:alias)
   end
 
-  def generate_options(client)
-    @histories = client.history
-    @blocks = client.blocks
-    @payouts = client.payouts
-    @rounds = client.rounds
+  def size
+    @history_size = @client.miner.history.count
+    @blocks_size = @client.miner.blocks.count
+    @rounds_size = @client.miner.rounds.count
+    @payouts_size = @client.miner.payouts.count
   end
 end

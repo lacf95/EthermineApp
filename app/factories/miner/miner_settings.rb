@@ -12,11 +12,10 @@ class MinerSettings
   end
 
   def min_payout
-    @miner.try(:min_payout) == nil ? 'N/V' : @miner.tr(:min_payout)
+    @miner.try(:min_payout) == nil ? 'N/V' : @miner.try(:min_payout)
   end
 
   def ip
-    binding.pry
     @miner.try(:ip) == nil ? 'N/V' : @miner.try(:ip)
   end
 end

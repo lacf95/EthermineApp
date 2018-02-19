@@ -1,26 +1,27 @@
 class MinerPayout
-  def initialize(miner)
-    @miner=miner
+  def initialize(miner, position)
+    @miner = miner
+    @position = position
   end
 
   def paid_on
-    @miner.try(:paid_on)
+    to_date(@miner[@position].try(:paid_on))
   end
 
   def start
-    @miner.try(:start)
+    @miner[@position].try(:start)
   end
 
   def end
-    @miner.try(:end)
+    @miner[@position].try(:end)
   end
 
   def amount
-    @miner.try(:amount)
+    to_eth(@miner[@position].try(:amount))
   end
 
   def tx_hash
-    @miner.try(:tx_hash)
+    @miner[@position].try(:tx_hash)
   end
 end
 

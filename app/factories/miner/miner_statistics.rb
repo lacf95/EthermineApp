@@ -4,31 +4,23 @@ class MinerStatistics
   end
 
   def time
-    convert_to_date(@miner.try(:time))
+    to_date(@miner.try(:time))
   end
 
   def last_seen
-    convert_to_date(@miner.try(:last_seen))
-  end
-
-  def convert_to_date(value)
-    DateTime.strptime("#{value}", "%s").to_formatted_s(:long).to_s
-  end
-
-  def convert_to_ghs(value)
-    "#{(value / 1000000000).round(4)} GH/s"
+    to_date(@miner.try(:last_seen))
   end
 
   def reported_hashrate
-    convert_to_ghs(@miner.try(:reported_hashrate))
+    to_ghs(@miner.try(:reported_hashrate))
   end
 
   def average_hashrate
-    convert_to_ghs(@miner.try(:average_hashrate))
+    to_ghs(@miner.try(:average_hashrate))
   end
 
   def current_hashrate
-    convert_to_ghs(@miner.try(:current_hashrate))
+    to_ghs(@miner.try(:current_hashrate))
   end
 
   def valid_shares
@@ -48,7 +40,7 @@ class MinerStatistics
   end
 
   def unpaid
-    convert_to_ghs(@miner.try(:unpaid))
+    to_eth(@miner.try(:unpaid))
   end
 
   def unconfirmed
