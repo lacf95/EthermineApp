@@ -1,8 +1,11 @@
 .navbar.navbar-dark.bg-info
-  .navbar-brand
+  .navbar-brand{id: "navText"}
     Ethermine
-    = image_tag ('/assets/doggo.png')
-  .form-inline.my-2.my-lg-0
-    .float-right
-      = link_to 'Log Out', credential_path(:id), method: :destroy, class: 'btn btn-danger'
+    %img(src='/assets/doggo.ico')
+  - unless current_page?(signup_url) 
+    = link_to 'Log Out', credential_path(1), method: :delete, class: 'btn btn-danger'
+  - else
+    .form-inline.my-2.my-lg-0
+      .float-right
+        - link_to 'Log Out', credential_path(1), method: :delete, class: 'btn btn-danger'
 %br
