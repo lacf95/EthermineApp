@@ -13,14 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+img{
+  width: 40px;
+  height: 40px;
+}
+
 .page-footer{
   margin-top: 90px;
   margin-bottom: -40px;
 
-}
-img{
-  width: 40px;
-  height: 40px;
 }
 
 .navbar{
