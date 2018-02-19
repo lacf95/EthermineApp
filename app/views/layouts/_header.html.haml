@@ -5,7 +5,7 @@
   - if current_page?(users_path) || current_page?(new_address_path) || current_page?(addresses_path) 
     .form-inline.my-2.my-lg-0
       .float-right
-        %span{class: 'badge badge-success' }
+        %span{class: 'badge bg-light' }
           = show_user_name
           = link_to 'Log Out', credential_path(1), method: :delete, class: 'btn btn-danger'
 %br
