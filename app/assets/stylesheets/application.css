@@ -29,6 +29,10 @@ img{
   font-size: 40px;
 }
 
+#user_name{
+  font-size: 25px;
+}
+
 #navText:hover{
   padding-left: 30px;	
   transform: scale(1.5)
