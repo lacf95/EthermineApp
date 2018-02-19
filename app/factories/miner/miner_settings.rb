@@ -1,4 +1,5 @@
 class MinerSettings
+  include EthermineConvertions
   def initialize(miner)
     @miner = miner
   end

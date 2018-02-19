@@ -1,5 +1,6 @@
 class MinerRounds
-  def initialize(miner,position)
+  include EthermineConvertions
+  def initialize(miner, position)
     @miner = miner
     @position = position
   end

@@ -1,4 +1,5 @@
 class MinerPayout
+  include EthermineConvertions
   def initialize(miner, position)
     @miner = miner
     @position = position

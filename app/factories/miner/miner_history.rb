@@ -1,5 +1,6 @@
 class MinerHistory
-  def initialize(miner,position)
+  include EthermineConvertions
+  def initialize(miner, position)
     @miner = miner
     @position = position
   end
@@ -15,7 +16,7 @@ class MinerHistory
   def average_hashrate
     to_ghs(@miner[@position].try(:average_hashrate))
   end
- 
+
   def current_hashrate
     to_ghs(@miner[@position].try(:current_hashrate))
   end

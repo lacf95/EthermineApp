@@ -1,4 +1,5 @@
 class MinerStatistics
+  include EthermineConvertions
   def initialize(miner)
     @miner = miner
   end
@@ -59,4 +60,3 @@ class MinerStatistics
     "#{@miner.try(:btc_per_min)} BTC"
   end
 end
-

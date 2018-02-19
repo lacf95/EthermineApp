@@ -1,4 +1,5 @@
 class MinerBlocks
+  include EthermineConvertions
   def initialize(miner, position)
     @miner = miner
     @position = position
@@ -24,4 +25,3 @@ class MinerBlocks
     @miner[@position].try(:tx_hash)
   end
 end
-
