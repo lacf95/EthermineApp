@@ -34,14 +34,14 @@
             %p.card-text
               = number_to_human(a.statistics.btc_per_min)
               %small.text-muted
-                Bitcoin per second
+                Bitcoin per minute
             %p.card-text
               = number_to_human(a.statistics.current_hashrate)
               %small.text-muted
-                Hashes per minute
+                Hashes per second
           .card-footer.small.text-right
             = link_to 'Show', address_path(a), class: 'card-link'
             = link_to 'Edit', edit_address_path(a), class: 'card-link'
             = link_to 'Delete', address_path(a), method: :delete,
-              data: {confirm: 'Are you sure'}, class: 'text-danger card-link'
+              data: {confirm: "Delete #{a.alias} address?"}, class: 'text-danger card-link'
         %br

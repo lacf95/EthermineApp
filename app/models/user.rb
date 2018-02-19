@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     update(token: generate_token)
   end
 
+  def full_name
+    " #{first_name} #{last_name} "
+  end
+
   private
 
   def new_token
@@ -19,9 +23,5 @@ class User < ActiveRecord::Base
 
   def generate_token
     Digest::SHA256.hexdigest(email + Time.now.to_i.to_s)
-  end
-
-  def full_name
-    " #{first_name} #{last_name} "
   end
 end
