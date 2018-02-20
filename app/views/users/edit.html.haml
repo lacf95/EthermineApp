@@ -16,4 +16,7 @@
         .form-group
           = form.label :password
           = form.text_field :password, class: 'form-control', placeholder: 'put your new password', type: 'password'
+        - @user.errors.full_messages.each do |msg|
+          .alert.alert-danger{role: 'alert'}
+            = msg
         = form.submit 'Save Changes', class: 'btn btn-primary', align: 'center'

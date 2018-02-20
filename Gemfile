@@ -17,6 +17,7 @@ gem 'etherclient'
 gem 'bcrypt'
 gem 'haml-rails', '~> 1.0'
 gem 'webpacker', '~> 3.2'
+gem 'paperclip', '~> 5.2', '>= 5.2.1'
 
 group :development, :test do
   gem 'pry'

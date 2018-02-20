@@ -16,6 +16,10 @@
         .form-group
           = form.label :password
           = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
+        .form-group
+          = form.label :avatar
+          = form.file_field :avatar
+        
         - @user.errors.full_messages.each do |msg|
           .alert.alert-danger{role: 'alert'}
             = msg

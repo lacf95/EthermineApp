@@ -1,1 +1,16 @@
-= link_to 'home', home_index_path
+%br
+.container
+  .col-xs-10.offset-xs-1.col-md-4.offset-md-4
+    .card
+      .card-header
+        User Information:
+        .list-group.list-group-flush
+        %br
+          .list-group-item=@user.first_name
+          .list-group-item=@user.last_name
+          .list-group-item=@user.email
+      .card-footer
+        .btn.btn-danger
+          = link_to 'Edit', edit_user_path
+        Return to Dashboard
+        = link_to 'home', home_index_path
