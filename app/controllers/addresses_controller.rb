@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :find_address
+  before_action :find_address, except: [:new, :create]
 
   def new
     @address = Address.new
@@ -12,18 +12,14 @@ class AddressesController < ApplicationController
   end
 
   def show
-    find_address
-    @client = EtherClient.new(@address.address)
-    @min_factory = MinerFactory.new(@client.miner)
-    size
+    client = EtherClient.new(@address.address)
+    @min_factory = MinerFactory.new(client.miner)
   end
 
   def edit
-    find_address
   end
 
   def update
-    find_address
     if @address.update(address_params)
       redirect_to @address
     else
@@ -32,7 +28,6 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    find_address
     redirect_to home_index_path unless !@address.destroy
   end
 
@@ -43,13 +38,6 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:address,:alias)
-  end
-
-  def size
-    @history_size = @client.miner.history.count
-    @blocks_size = @client.miner.blocks.count
-    @rounds_size = @client.miner.rounds.count
-    @payouts_size = @client.miner.payouts.count
+    params.require(:address).permit(:address, :alias)
   end
 end

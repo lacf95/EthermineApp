@@ -71,7 +71,7 @@
           %th Active Workers
         %tbody
           -i=0
-          -while i < @history_size
+          -while i < 140
             %tr
               %td= @min_factory.history(i).time
               %td= @min_factory.history(i).reported_hashrate
@@ -94,13 +94,13 @@
           %th Tx hash
         %tbody
           -i=0
-          -while i < @blocks_size
+          -#while i < 10
             %tr
-              %td= @min_factory.block(i).paid_on
-              %td= @min_factory.block(i).block.number
-              %td= @min_factory.block(i).block.type
-              %td= @min_factory.block(i).block.amount
-              %td= @min_factory.block(i).block.tx_hash
+              %td= @min_factory.blocks(i).paid_on
+              %td= @min_factory.blocks(i).block.number
+              %td= @min_factory.blocks(i).block.type
+              %td= @min_factory.blocks(i).block.amount
+              %td= @min_factory.blocks(i).block.tx_hash
             -i+=1
     .clearfix
 
@@ -115,7 +115,7 @@
           %th Tx hash
         %tbody
           -i=0
-          -while i < @payouts_size
+          -while i < 10
             %tr
               %td= @min_factory.payout(i).paid_on
               %td= @min_factory.payout(i).start
@@ -133,7 +133,7 @@
           %th Tx hash
         %tbody
           -i=0
-          -while i < @rounds_size
+          -while i < 10
             %tr
               %td= @min_factory.rounds(i).block
               %td= @min_factory.rounds(i).amount

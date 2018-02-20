@@ -36,4 +36,8 @@ class MinerHistory
   def active_workers
     @miner[@position].try(:active_workers)
   end
+
+  def size
+    @miner.size
+  end
 end
