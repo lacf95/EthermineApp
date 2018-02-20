@@ -33,11 +33,6 @@ class RegistrationController < ApplicationController
   end
 
   def send_email
-    url = confirm_url
-    UserNotifierMailer.send_signup_email(@user.id, url).deliver
-  end
-
-  def confirm_url
-    "#{request.base_url}/confirm/#{@user.token}"
+    UserNotifierMailer.send_signup_email(@user.id, confirm_url(@user.token)).deliver
   end
 end
