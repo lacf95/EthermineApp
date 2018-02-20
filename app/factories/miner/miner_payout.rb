@@ -1,28 +1,27 @@
 class MinerPayout
   include EthermineConvertions
-  def initialize(miner, position)
-    @miner = miner
-    @position = position
+  def initialize(attrs)
+    @attrs = attrs
   end
 
   def paid_on
-    to_date(@miner[@position].try(:paid_on))
+    to_date(@attrs.try(:paid_on))
   end
 
   def start
-    @miner[@position].try(:start)
+    @attrs.try(:start)
   end
 
   def end
-    @miner[@position].try(:end)
+    @attrs.try(:end)
   end
 
   def amount
-    to_eth(@miner[@position].try(:amount))
+    to_eth(@attrs.try(:amount))
   end
 
   def tx_hash
-    @miner[@position].try(:tx_hash)
+    @attrs.try(:tx_hash)
   end
 end
 

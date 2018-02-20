@@ -1,15 +1,14 @@
 class MinerRounds
   include EthermineConvertions
-  def initialize(miner, position)
-    @miner = miner
-    @position = position
+  def initialize(attrs)
+    @attrs = attrs
   end
 
   def block
-    @miner[@position].try(:block)
+    @attrs.try(:block)
   end
 
   def amount
-    @miner[@position].try(:amount)
+    @attrs.try(:amount)
   end
 end

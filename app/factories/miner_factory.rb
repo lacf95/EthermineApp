@@ -11,24 +11,32 @@ class MinerFactory
     @miner = miner
   end
 
-  def payout(position)
-    @miner_payout ||= @miner.payouts
-    MinerPayout.new(@miner_payout, position)
+  def payouts
+    payouts= @miner.payouts
+    @miner_payouts = payouts.map do |payout|
+      MinerPayout.new(payout)
+    end
   end
 
-  def history(position)
-    @miner_history ||= @miner.history
-    MinerHistory.new(@miner_history, position)
+  def histories
+    histories = @miner.history
+    @miner_history = histories.map do |history|
+      MinerHistory.new(history)
+    end
   end
 
-  def blocks(position)
-    @miner_blocks ||= @miner.blocks
-    MinerBlocks.new(@miner_blocks, position)
+  def blocks
+    blocks = @miner.blocks
+    @miner_blocks = blocks.map do |block|
+      MinerBlocks.new(block)
+    end
   end
 
-  def rounds(position)
-    @miner_rounds ||= @miner.rounds
-    MinerRounds.new(@miner_rounds, position)
+  def rounds
+    rounds = @miner.rounds
+    @miner_rounds = rounds.map do |round|
+      MinerRounds.new(round)
+    end
   end
 
   def settings
@@ -38,4 +46,5 @@ class MinerFactory
   def statistics
     MinerStatistics.new(@miner.statistics)
   end
+
 end

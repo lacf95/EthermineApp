@@ -1,27 +1,26 @@
 class MinerBlocks
   include EthermineConvertions
-  def initialize(miner, position)
-    @miner = miner
-    @position = position
+  def initialize(attrs)
+    @attrs = attrs
   end
 
   def paid_on
-    miner[@position].try(:paid_on)
+    @attrs.try(:paid_on)
   end
 
   def number
-    @miner[@position].try(:number)
+    @attrs.try(:number)
   end
 
   def type
-    @miner[@position].try(:type)
+    @attrs.try(:type)
   end
 
   def amount
-    @miner[@position].try(:amount)
+    @attrs.try(:amount)
   end
 
   def tx_hash
-    @miner[@position].try(:tx_hash)
+    @attrs.try(:tx_hash)
   end
 end

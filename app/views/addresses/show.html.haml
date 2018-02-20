@@ -15,15 +15,15 @@
           %hr
           %h5.card-title
             $ 
-            = number_to_human(@min_factory.statistics.usd_per_min)
+            = number_to_human(@statistics.usd_per_min)
             %small.text-muted
               per minute
           %p.card-text
-            = number_to_human(@min_factory.statistics.btc_per_min)
+            = number_to_human(@statistics.btc_per_min)
             %small.text-muted
               Bitcoin per second
           %p.card-text
-            = number_to_human(@min_factory.statistics.current_hashrate)
+            = number_to_human(@statistics.current_hashrate)
             %small.text-muted
               Hashes per minute
         .card-footer.small.text-right
@@ -70,17 +70,15 @@
           %th Stale Shares
           %th Active Workers
         %tbody
-          -i=0
-          -while i < 140
+          -@histories.each do |history|
             %tr
-              %td= @min_factory.history(i).time
-              %td= @min_factory.history(i).reported_hashrate
-              %td= @min_factory.history(i).average_hashrate
-              %td= @min_factory.history(i).current_hashrate
-              %td= @min_factory.history(i).valid_shares
-              %td= @min_factory.history(i).stale_shares
-              %td= @min_factory.history(i).active_workers
-            -i+=1
+              %td= history.time
+              %td= history.reported_hashrate
+              %td= history.average_hashrate
+              %td= history.current_hashrate
+              %td= history.valid_shares
+              %td= history.stale_shares
+              %td= history.active_workers
     .clearfix
 
   #block.tab-pane.fade{"aria-labelledby" => "block-tab", :role => "tabpanel"}
@@ -93,15 +91,13 @@
           %th Amount 
           %th Tx hash
         %tbody
-          -i=0
-          -#while i < 10
+          -@blocks.each do |block|
             %tr
-              %td= @min_factory.blocks(i).paid_on
-              %td= @min_factory.blocks(i).block.number
-              %td= @min_factory.blocks(i).block.type
-              %td= @min_factory.blocks(i).block.amount
-              %td= @min_factory.blocks(i).block.tx_hash
-            -i+=1
+              %td= block.paid_on
+              %td= block.number
+              %td= block.type
+              %td= block.amount
+              %td= block.tx_hash
     .clearfix
 
   #payout.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
@@ -114,15 +110,13 @@
           %th Amount 
           %th Tx hash
         %tbody
-          -i=0
-          -while i < 10
+          -@payouts.each do |payout|
             %tr
-              %td= @min_factory.payout(i).paid_on
-              %td= @min_factory.payout(i).start
-              %td= @min_factory.payout(i).end
-              %td= @min_factory.payout(i).amount
-              %td= @min_factory.payout(i).tx_hash
-            -i+=1
+              %td= payout.paid_on
+              %td= payout.start
+              %td= payout.end
+              %td= payout.amount
+              %td= payout.tx_hash
     .clearfix
 
   #round.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
@@ -132,12 +126,10 @@
           %th Amount 
           %th Tx hash
         %tbody
-          -i=0
-          -while i < 10
+          -@rounds.each do |round|
             %tr
-              %td= @min_factory.rounds(i).block
-              %td= @min_factory.rounds(i).amount
-            -i+=1
+              %td= round.block
+              %td= round.amount
     .clearfix
 
   #setting.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
@@ -150,11 +142,10 @@
           %th Ip
         %tbody
           %tr
-            %td= @min_factory.settings.email
-            %td= @min_factory.settings.monitor
-            %td= @min_factory.settings.min_payout
-            %td= @min_factory.settings.ip
-          -i+=1
+            %td= @settings.email
+            %td= @settings.monitor
+            %td= @settings.min_payout
+            %td= @settings.ip
     .clearfix
 
   #statistic.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
@@ -177,18 +168,18 @@
           %th Btc per min
         %tbody
           %tr
-            %td= @min_factory.statistics.time
-            %td= @min_factory.statistics.last_seen
-            %td= @min_factory.statistics.reported_hashrate
-            %td= @min_factory.statistics.average_hashrate
-            %td= @min_factory.statistics.current_hashrate
-            %td= @min_factory.statistics.valid_shares
-            %td= @min_factory.statistics.invalid_shares
-            %td= @min_factory.statistics.stale_shares
-            %td= @min_factory.statistics.active_workers
-            %td= @min_factory.statistics.unpaid
-            %td= @min_factory.statistics.unconfirmed
-            %td= @min_factory.statistics.coins_per_min
-            %td= @min_factory.statistics.usd_per_min
-            %td= @min_factory.statistics.btc_per_min
+            %td= @statistics.time
+            %td= @statistics.last_seen
+            %td= @statistics.reported_hashrate
+            %td= @statistics.average_hashrate
+            %td= @statistics.current_hashrate
+            %td= @statistics.valid_shares
+            %td= @statistics.invalid_shares
+            %td= @statistics.stale_shares
+            %td= @statistics.active_workers
+            %td= @statistics.unpaid
+            %td= @statistics.unconfirmed
+            %td= @statistics.coins_per_min
+            %td= @statistics.usd_per_min
+            %td= @statistics.btc_per_min
     .clearfix
