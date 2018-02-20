@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :find_address
+
   def new
     @address = Address.new
   end
@@ -10,18 +12,18 @@ class AddressesController < ApplicationController
   end
 
   def show
-    findit
+    find_address
     @client = EtherClient.new(@address.address)
     @min_factory = MinerFactory.new(@client.miner)
     size
   end
 
   def edit
-    findit
+    find_address
   end
-  
+
   def update
-    findit
+    find_address
     if @address.update(address_params)
       redirect_to @address
     else
@@ -30,13 +32,13 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    findit
+    find_address
     redirect_to home_index_path unless !@address.destroy
   end
 
   private
 
-  def findit
+  def find_address
     @address = Address.find(params[:id])
   end
 
