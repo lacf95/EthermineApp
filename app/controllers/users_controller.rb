@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     user_addresses
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   private
 
   def general_ethermine
@@ -22,4 +26,5 @@ class UsersController < ApplicationController
       a.statistics = EtherClient.new(a.address).miner.statistics
     end
   end
+
 end

@@ -1,0 +1,19 @@
+.container
+  .col-xs-10.offset-xs-1.col-md-4.offset-md-4
+    .card
+      .card-header
+        %h5 Edit User Information!
+      = form_with model: @user, url: { action: "update" }, class: 'card-body' do |form|
+        .form-group
+          = form.label :firstname
+          = form.text_field :first_name, class: 'form-control', placeholder: 'Put your new name', type: 'text'
+        .form-group
+          = form.label :lastname
+          = form.text_field :last_name, class: 'form-control', placeholder: 'put your new last name', type: 'text'
+        .form-group
+          = form.label :email
+          = form.text_field :email, class: 'form-control', placeholder: 'put your new email address', type: 'email'
+        .form-group
+          = form.label :password
+          = form.text_field :password, class: 'form-control', placeholder: 'put your new password', type: 'password'
+        = form.submit 'Up Date', class: 'btn btn-primary', align: 'center'

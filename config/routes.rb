@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'login' => 'credentials#index'
   get 'confirm/:token', to: 'registration#confirm', as: 'confirm'
   get 'send-confirm' => 'registration#signup_email'
-  resources :users, only: %i[index]
+  resources :users, only: %i[index edit]
   resources :addresses
   resources :credentials, only: %i[create destroy]
   resources :addresses
