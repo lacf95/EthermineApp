@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+img{
+  width: 40px;
+  height: 40px;
+}
+
+.page-footer{
+  margin-top: 90px;
+  margin-bottom: -40px;
+}
+
+.navbar{
+  font-size: 40px;
+}
+
+#navText:hover{
+  transform: scale(1.5)
+}
