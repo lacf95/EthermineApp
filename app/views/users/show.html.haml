@@ -2,6 +2,7 @@
 .container
   .col-xs-10.offset-xs-1.col-md-4.offset-md-4
     .card
+      = link_to image_tag(@user.avatar.url(:med)), @user.avatar.url
       .card-header
         User Information:
         .list-group.list-group-flush
