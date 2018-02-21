@@ -2,16 +2,14 @@
   .navbar-brand{id: 'navText'}
     Ethermine
     %img(src='/assets/doggo.ico')
-  - if current_page?(users_path) || current_page?(new_address_path) || current_page?(addresses_path)
+  - if current_page?(users_path) || current_page?(addresses_path)
     .form-inline.my-2.my-lg-0
       .float-right
         = image_tag(@user.avatar.url, style: 'max-width: 80px')
-        %button{class: 'btn btn-secondary dropdown-toggle'}
-          = show_user_name
-          .dropdown-menu
-            %a{class: 'dropdown-item'}
-              = link_to 'Edit', edit_user_path(@user.id)
-            %a{class: 'dropdown-item'}
-              = link_to 'Log Out', credential_path(1), method: :delete
+        .badge.badge-info
+          .badge.badge-pill.badge-dark
+            = show_user_name
+          = link_to 'Edit', edit_user_path(@user.id), class: 'btn btn-success'
+          = link_to 'Log Out', credential_path(1), method: :delete, class: 'btn btn-danger'
 %script
   $('.dropdown-toggle').dropdown()
