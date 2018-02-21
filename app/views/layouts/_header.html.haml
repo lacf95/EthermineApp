@@ -1,7 +1,7 @@
 .navbar.nabvar-dark.bg-info
   .navbar-brand{id: 'navText'}
     Ethermine
-    %img(src='/assets/doggo.ico')
+    %img{class: 'nav-img'}(src='/assets/doggo.ico')
   - if current_page?(users_path) || current_page?(addresses_path)
     .form-inline.my-2.my-lg-0
       .float-right
