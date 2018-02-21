@@ -5,20 +5,19 @@ class UsersController < ApplicationController
     user_addresses
   end
 
-  def show
-    find_user
+  def profile
+    render 'show'
   end
 
   def edit
-    find_user
   end
 
   def update
     find_user
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to profile_path
     else
-      redirecto_to 'edit'
+      render 'edit'
     end
   end
 

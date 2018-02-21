@@ -4,7 +4,7 @@
     .card
       .card-header
         %h5 Edit User Information!
-      = form_with model: @user, url: { action: "update" }, class: 'card-body' do |form|
+      = form_with model: @current_user, url: profile_update_path, class: 'card-body' do |form|
         .form-group
           = form.label :firstname
           = form.text_field :first_name, class: 'form-control', placeholder: 'Put your new name', type: 'text'
@@ -20,7 +20,7 @@
         .form-group
           = form.label :avatar
           = form.file_field :avatar
-        - @user.errors.full_messages.each do |msg|
+        - @current_user.errors.full_messages.each do |msg|
           .alert.alert-danger{role: 'alert'}
             = msg
         = form.submit 'Save Changes', class: 'btn btn-primary', align: 'center'

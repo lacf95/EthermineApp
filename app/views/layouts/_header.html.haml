@@ -5,8 +5,6 @@
   - if current_page?(users_path) || current_page?(addresses_path)
     .form-inline.my-2.my-lg-0
       .float-right
-        = image_tag(@user.avatar.url, style: 'max-width: 50px')
-        = show_user_name
-        = link_to 'View Profile', user_path(@user.id), class: 'badge badge-light'
-        = link_to 'Edit Profile', edit_user_path(@user.id), class: 'badge badge-light'
+        = image_tag(@current_user.avatar.url, style: 'max-width: 50px')
+        = link_to 'View Profile', profile_path, class: 'badge badge-light'
         = link_to 'Log Out', credential_path(1), method: :delete, class: 'badge badge-danger'

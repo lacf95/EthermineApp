@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :show_user_name
+  before_action :active_user 
 
-  def show_user_name
-    return nil unless user = User.find_by(id: session[:user_id])
-    user.first_name
+  def active_user
+    @current_user = User.find_by(id: session[:user_id]) if session[:user_id]
   end
 end
