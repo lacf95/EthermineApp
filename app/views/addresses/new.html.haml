@@ -10,4 +10,12 @@
         .form-group
           = form.label :alias
           = form.text_field :alias, class: 'form-control', placeholder: 'Alias for this address', type: 'text'
+        - flash.each do |name,msg|
+          .alert.alert-danger{role: 'alert'}
+            =msg
+        .form-group
+        = link_to 'Regresar', (:back), class: 'btn btn-primaty'
         = form.submit 'Add Address', class: 'btn btn-primary', align: 'center'
+
+
+

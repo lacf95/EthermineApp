@@ -8,24 +8,24 @@
       -a = @address
       .card
         .card-body
-          %h3.card-title
-            = link_to a.alias, address_path(a), class: 'text-info'
+          %h3.card-title= link_to a.alias, address_path(a), class: 'text-info'
           %h6.text-muted
           = a.address
+          - flash.each do |name,msg|
+            %br
+            %br
+            .alert.alert-success{role: 'alert'}= msg 
           %hr
-          %h5.card-title
+          %p.card-title
             $ 
             = number_to_human(@statistics.usd_per_min)
-            %small.text-muted
-              per minute
+            %small.text-muted per minute
           %p.card-text
             = number_to_human(@statistics.btc_per_min)
-            %small.text-muted
-              Bitcoin per second
+            %small.text-muted Bitcoin per second
           %p.card-text
             = number_to_human(@statistics.current_hashrate)
-            %small.text-muted
-              Hashes per minute
+            %small.text-muted Hashes per minute
         .card-footer.small.text-right
           = link_to 'Home', home_index_path, class: 'card-link'
           = link_to 'Show', address_path(a), class: 'card-link'

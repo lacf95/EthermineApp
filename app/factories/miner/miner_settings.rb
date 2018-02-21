@@ -1,22 +1,22 @@
 class MinerSettings
   include EthermineConvertions
-  def initialize(miner)
-    @miner = miner
+  def initialize(settings)
+    @settings = settings
   end
 
   def email
-    @miner.try(:email) == nil ? 'N/V' : @miner.try(:email)
+    @settings.try(:email) == nil ? 'N/V' : @settings.try(:email)
   end
 
   def monitor
-    @miner.try(:monitor) == 1 ? 'Yes' : 'No'
+    @settings.try(:monitor) == 1 ? 'Yes' : 'No'
   end
 
   def min_payout
-    @miner.try(:min_payout) == nil ? 'N/V' : @miner.try(:min_payout)
+    @settings.try(:min_payout) == nil ? 'N/V' : @settings.try(:min_payout)
   end
 
   def ip
-    @miner.try(:ip) == nil ? 'N/V' : @miner.try(:ip)
+    @settings.try(:ip) == nil ? 'N/V' : @settings.try(:ip)
   end
 end
