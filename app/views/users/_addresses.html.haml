@@ -11,6 +11,9 @@
         %b
           = link_to 'Send me the confirmation mail again', send_confirm_path
     %br
+    - flash.each do |name,msg|
+      .alert.alert-warning{role: 'alert'}
+        =msg
     - if @addresses.count == 0
       .alert.alert-info
         %p
