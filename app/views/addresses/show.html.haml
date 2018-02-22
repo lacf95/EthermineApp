@@ -1,3 +1,185 @@
-=@address.alias
-= link_to 'home', home_index_path
-= #@pool.statisttics...
+%link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+%script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
+%br
+.container
+  #main.col-sm-offset-1.col-sm-10
+    .col-md-12
+      -a = @address
+      .card
+        .card-body
+          %h3.card-title= link_to a.alias, address_path(a), class: 'text-info'
+          %h6.text-muted
+          = a.address
+          - flash.each do |name,msg|
+            %br
+            %br
+            .alert.alert-success{role: 'alert'}= msg 
+          %hr
+          %p.card-title
+            $ 
+            = number_to_human(@statistics.usd_per_min)
+            %small.text-muted per minute
+          %p.card-text
+            = number_to_human(@statistics.btc_per_min)
+            %small.text-muted Bitcoin per second
+          %p.card-text
+            = number_to_human(@statistics.current_hashrate)
+            %small.text-muted Hashes per minute
+        .card-footer.small.text-right
+          = link_to 'Home', home_index_path, class: 'card-link'
+          = link_to 'Show', address_path(a), class: 'card-link'
+          = link_to 'Edit', edit_address_path(a), class: 'card-link'
+          = link_to 'Delete', address_path(a), method: :delete,
+      data: {confirm: 'Are you sure'}, class: 'text-danger card-link'
+%br
+%br
+
+%ul#myTab.nav.nav-tabs{:role => "tablist"}
+  %li.nav-item
+    %a#history-tab.nav-link{"aria-controls" => "home", 
+      "aria-selected" => "true", "data-toggle" => "tab", 
+      :href => "#history", :role => "tab"} History 
+  %li.nav-item
+    %a#payout-tab.nav-link{"aria-controls" => "contact", 
+      "aria-selected" => "false", "data-toggle" => "tab", 
+      :href => "#payout", :role => "tab"} Payout
+  %li.nav-item
+    %a#round-tab.nav-link{"aria-controls" => "contact", 
+      "aria-selected" => "false", "data-toggle" => "tab", 
+      :href => "#round", :role => "tab"} Rounds
+  %li.nav-item
+    %a#setting-tab.nav-link{"aria-controls" => "contact", 
+      "aria-selected" => "false", "data-toggle" => "tab", 
+      :href => "#setting", :role => "tab"} Settings
+  %li.nav-item
+    %a#statistic-tab.nav-link{"aria-controls" => "contact", 
+      "aria-selected" => "false", "data-toggle" => "tab", 
+      :href => "#statistic", :role => "tab"} Statistics
+
+#myTabContent.tab-content
+  #history.tab-pane.fade.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Time
+          %th Reported Hashrate
+          %th Average Hashrate
+          %th Current Hashrate
+          %th Valid Shares
+          %th Stale Shares
+          %th Active Workers
+        %tbody
+          -@histories.each do |history|
+            %tr
+              %td= history.time
+              %td= history.reported_hashrate
+              %td= history.average_hashrate
+              %td= history.current_hashrate
+              %td= history.valid_shares
+              %td= history.stale_shares
+              %td= history.active_workers
+    .clearfix
+
+  #block.tab-pane.fade{"aria-labelledby" => "block-tab", :role => "tabpanel"}
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Paid on
+          %th Number
+          %th Type
+          %th Amount 
+          %th Tx hash
+        %tbody
+          -@blocks.each do |block|
+            %tr
+              %td= block.paid_on
+              %td= block.number
+              %td= block.type
+              %td= block.amount
+              %td= block.tx_hash
+    .clearfix
+
+  #payout.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Paid on
+          %th Start 
+          %th End
+          %th Amount 
+          %th Tx hash
+        %tbody
+          -@payouts.each do |payout|
+            %tr
+              %td= payout.paid_on
+              %td= payout.start
+              %td= payout.end
+              %td= payout.amount
+              %td= payout.tx_hash
+    .clearfix
+
+  #round.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Amount 
+          %th Tx hash
+        %tbody
+          -@rounds.each do |round|
+            %tr
+              %td= round.block
+              %td= round.amount
+    .clearfix
+
+  #setting.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Email 
+          %th Monitor
+          %th Min Payout
+          %th Ip
+        %tbody
+          %tr
+            %td= @settings.email
+            %td= @settings.monitor
+            %td= @settings.min_payout
+            %td= @settings.ip
+    .clearfix
+
+  #statistic.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
+    .table-responsive
+      %table#mytable.table.table-bordred.table-striped
+        %thead
+          %th Time 
+          %th Last Seen 
+          %th Reported Hashrate
+          %th Average Hashrate
+          %th Current Hashrate
+          %th Valid Shares
+          %th Invalid Shares
+          %th Stale Shares
+          %th Active workers
+          %th Unpaid
+          %th Unconfirmed
+          %th Coins per min
+          %th Usd per min
+          %th Btc per min
+        %tbody
+          %tr
+            %td= @statistics.time
+            %td= @statistics.last_seen
+            %td= @statistics.reported_hashrate
+            %td= @statistics.average_hashrate
+            %td= @statistics.current_hashrate
+            %td= @statistics.valid_shares
+            %td= @statistics.invalid_shares
+            %td= @statistics.stale_shares
+            %td= @statistics.active_workers
+            %td= @statistics.unpaid
+            %td= @statistics.unconfirmed
+            %td= @statistics.coins_per_min
+            %td= @statistics.usd_per_min
+            %td= @statistics.btc_per_min
+    .clearfix

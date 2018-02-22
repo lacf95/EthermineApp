@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :find_address, except: [:new, :create]
+
   def new
     @address = Address.new
   end
@@ -6,40 +8,59 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.user_id = session[:user_id]
-    redirect_to home_index_path unless !@address.save
+    if @address.save
+      flash[:notice] = 'The address was succesfully created'
+      redirect_to home_index_path
+    else
+      flash[:error] = @address.errors.full_messages.to_sentence
+      redirect_to new_address_path
+    end
   end
 
   def show
-    findit
     client = EtherClient.new(@address.address)
+    @min_factory = MinerFactory.new(client.miner)
+    miner_information
   end
 
-  def edit
-    findit
-  end
- 
+  def edit; end
+
   def update
-    findit
     if @address.update(address_params)
+      flash[:notice] = 'The address was succesfully updated'
       redirect_to @address
     else
-      redirect_to 'edit'
+      flash[:error] = @address.errors.full_messages.to_sentence
+      redirect_to edit_address_path @address
     end
   end
 
   def destroy
-    findit
-    redirect_to home_index_path unless !@address.destroy
+    if @address.destroy
+      flash[:notice] = 'The address was succesfully deleted'
+      redirect_to home_index_path
+    else
+      flash[:error] = @address.errors_full_messages.to_sentence
+      redirect_to @address
+    end
   end
 
   private
 
-  def findit
+  def find_address
     @address = Address.find(params[:id])
   end
 
   def address_params
     params.require(:address).permit(:address, :alias)
   end
-end
 
+  def miner_information
+    @settings = @min_factory.settings
+    @statistics = @min_factory.statistics
+    @histories = @min_factory.histories
+    @rounds = @min_factory.rounds
+    @payouts = @min_factory.payouts
+    @blocks = @min_factory.blocks
+  end
+end
