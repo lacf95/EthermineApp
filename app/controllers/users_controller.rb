@@ -33,9 +33,9 @@ class UsersController < ApplicationController
 
   def user_addresses
     @addresses = @user.addresses
-    @addresses.map do |a|
-      a.class.module_eval { attr_accessor :statistics }
-      a.statistics = EtherClient.new(a.address).miner.statistics
+    @addresses.map do |address|
+      address.class.module_eval { attr_accessor :statistics }
+      address.statistics = EtherClient.new(address.address).miner.statistics
     end
   end
   
