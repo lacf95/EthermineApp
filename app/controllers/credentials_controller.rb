@@ -5,8 +5,8 @@ class CredentialsController < ApplicationController
 
   def create
     @credential = Credential.new(credential_params)
-    if @credential.valid? && @credential.in?
-      session[:user_id] = @credential.user[:id]
+    if @credential.valid?
+      session[:user_id] = @credential.user.id
       redirect_to home_index_path
     else
       @credential.password = nil

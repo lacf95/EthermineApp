@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    return redirect_to login_path unless User.find_by(id: session[:user_id])
+    return redirect_to login_path unless @current_user
     redirect_to users_path
   end
 end
