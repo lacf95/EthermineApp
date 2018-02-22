@@ -1,3 +1,4 @@
+%br
 .container
   .col-xs-10.offset-xs-1.col-md-4.offset-md-4
     .card
@@ -16,10 +17,14 @@
         .form-group
           = form.label :password
           = form.text_field :password, class: 'form-control', placeholder: 'Your password', type: 'password'
+        .form-group
+          = form.label :avatar
+          = form.file_field :avatar
+        
         - @user.errors.full_messages.each do |msg|
           .alert.alert-danger{role: 'alert'}
             = msg
         = form.submit 'Sign Up', class: 'btn btn-primary', align: 'center'
       .card-footer 
         Do you have an account?
-        =link_to 'Log in', home_index_path
+        =link_to 'Log in', login_path

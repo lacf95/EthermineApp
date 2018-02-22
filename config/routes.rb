@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   post 'registration/create'
   root 'home#index'
   get 'login' => 'credentials#index'
-  resources :users, only: %i[index]
+  get 'confirm/:token', to: 'registration#confirm', as: 'confirm'
+  get 'send-confirm' => 'registration#signup_email'
+  get 'profile' => 'users#profile'
+  get 'profile/edit' => 'users#edit'
+  resources :users, only: %i[index update]
   resources :addresses
   resources :credentials, only: %i[create destroy]
   resources :addresses
