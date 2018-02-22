@@ -17,7 +17,7 @@ class AddressesController < ApplicationController
   def edit
     findit
   end
-  
+ 
   def update
     findit
     if @address.update(address_params)
@@ -39,7 +39,7 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:address,:alias)
+    params.require(:address).permit(:address, :alias)
   end
 end
 

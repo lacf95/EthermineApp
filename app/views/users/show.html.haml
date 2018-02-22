@@ -1,0 +1,17 @@
+%br
+.container
+  .col-xs-10.offset-xs-1.col-md-4.offset-md-4
+    .card
+      %div
+        = image_tag(@current_user.avatar.url, style: 'max-width: 150px', class: 'mx-auto d-block', alt: 'avatar')
+      .card-header
+        User Information:
+        .list-group.list-group-flush
+        %br
+          .list-group-item=@current_user.first_name
+          .list-group-item=@current_user.last_name
+          .list-group-item=@current_user.email
+      .card-footer
+        .btn.btn-success.text-white
+          = link_to 'Edit', profile_edit_path, class: 'text-white'
+        = link_to 'Dashboard', home_index_path, class: 'btn btn-primary', style: 'margin-left: 130px'
