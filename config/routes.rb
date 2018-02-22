@@ -8,9 +8,7 @@ Rails.application.routes.draw do
   get 'send-confirm' => 'registration#signup_email'
   get 'profile' => 'users#profile'
   get 'profile/edit' => 'users#edit'
-  put 'profile/update' => 'users#update'
-  patch 'profile/update' => 'users#update'
-  resources :users, only: %i[index]
+  resources :users, only: %i[index update]
   resources :addresses
   resources :credentials, only: %i[create destroy]
   resources :addresses

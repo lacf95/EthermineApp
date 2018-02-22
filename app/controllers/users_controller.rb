@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def update
     find_user
     if @user.update(user_params)
-      redirect_to profile_path
+      render @user
     else
       render 'edit'
     end
