@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @user = User.find(session[:user_id])
-    general_ethermine
+  end
+
+  def me
+    @general_info = EthermineGeneralInfoPresenter.new
     user_addresses
   end
 
@@ -13,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    find_user
     if @user.update(user_params)
       render @user
     else
@@ -23,24 +24,12 @@ class UsersController < ApplicationController
 
   private
 
-  def general_ethermine
-    ether = EtherClient.new
-    stats = ether.pool.statistics
-    @pool_stats = stats.pool_stats
-    @price = stats.price
-    @network = ether.pool.network
-  end
-
   def user_addresses
-    @addresses = @user.addresses
+    @addresses = @current_user.addresses
     @addresses.map do |address|
       address.class.module_eval { attr_accessor :statistics }
       address.statistics = EtherClient.new(address.address).miner.statistics
     end
-  end
-  
-  def find_user
-    @user = User.find(session[:user_id])
   end
 
   def user_params

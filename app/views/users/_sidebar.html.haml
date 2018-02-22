@@ -2,8 +2,60 @@
   .card-header.text-white.bg-info.mb-3
     Ethermine general info
   .card-body
-    = render 'prices'
+    #price.card-block
+      %h4.card-title
+        Price
+      .card-text
+        $
+        = @general_info.price['usd']
+        %small.text-muted
+          USD
+      .card-text
+        = number_to_human(@general_info.price['btc'])
+        %small.text-muted
+          Bitcoin
     %hr
-    = render 'poolstats'
+    #pool-stats.card-block
+      %h4.card-title
+        Pool
+      .card-text
+        = number_to_human(@general_info.pool_stats['hashRate'])
+        %small.text-muted
+          hashes per second
+      .card-text
+        = number_to_human(@general_info.pool_stats['miners'])
+        %small.text-muted
+          active miners
+      .card-text
+        = number_to_human(@general_info.pool_stats['workers'])
+        %small.text-muted
+          active workers
     %hr
-    = render 'network'
+
+    #network.card-block
+      %h4.card-title
+        Network
+      .card-text.text-muted
+        = Time.at(@general_info.network.time).to_formatted_s(:short)
+      %br
+      .card-text
+        = number_to_human(@general_info.network.block_time)
+        %small.text-muted
+          block time (in minutes)
+      .card-text
+        = number_to_human(@general_info.network.difficulty)
+        %small.text-muted
+          difficulty ratio
+      .card-text
+        = number_to_human(@general_info.network.hashrate)
+        %small.text-muted
+          hashes per second
+      .card-text
+        $
+        = @general_info.network.usd
+        %small.text-muted
+          USD
+      .card-text
+        = number_to_human(@general_info.network.btc)
+        %small.text-muted
+          Bitcoin

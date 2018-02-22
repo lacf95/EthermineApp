@@ -2,7 +2,7 @@
   .col-md-12
     %h3 My Addresses 
     %hr
-    - if @user.active
+    - if @current_user.active
       .text-right
         =link_to 'Add new address', new_address_path, class: 'btn btn-success'
     - else

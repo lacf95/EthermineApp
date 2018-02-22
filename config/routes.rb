@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get 'signup' => 'registration#index'
   post 'registration/create'
 
-  resources :users, only: %i[index update]
+  resources :users, only: %i[index update] do
+    collection do
+      get :me
+    end
+  end
   resources :addresses
   resources :credentials, only: %i[create destroy]
 end
