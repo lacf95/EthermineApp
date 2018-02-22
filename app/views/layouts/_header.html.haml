@@ -1,0 +1,10 @@
+.navbar.nabvar-dark.bg-info
+  .navbar-brand{id: 'navText'}
+    Ethermine
+    %img{class: 'nav-img'}(src='/assets/doggo.ico')
+  - if current_page?(users_path) || current_page?(addresses_path)
+    .form-inline.my-2.my-lg-0
+      .float-right
+        = image_tag(@current_user.avatar.url, style: 'max-width: 50px')
+        = link_to 'View Profile', profile_path, class: 'badge badge-light'
+        = link_to 'Log Out', credential_path(1), method: :delete, class: 'badge badge-danger'
