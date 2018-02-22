@@ -1,5 +1,4 @@
 class MinerBlocks
-  include EthermineConvertions
   def initialize(attrs)
     @attrs = attrs
   end

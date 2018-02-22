@@ -1,6 +1,6 @@
 module EthermineConvertions
   def to_date(value)
-    Time.strptime(value.to_s, '%s').to_formatted_s(:long).to_s
+      Time.strptime(value.to_s, '%s').to_formatted_s(:long).to_s
   end
 
   def to_ghs(value)

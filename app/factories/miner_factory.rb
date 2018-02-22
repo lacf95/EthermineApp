@@ -1,18 +1,10 @@
 class MinerFactory
-  load 'ethermine_convertions.rb'
-  load 'miner/miner_settings.rb'
-  load 'miner/miner_statistics.rb'
-  load 'miner/miner_history.rb'
-  load 'miner/miner_payout.rb'
-  load 'miner/miner_rounds.rb'
-  load 'miner/miner_blocks.rb'
-
   def initialize(miner)
     @miner = miner
   end
 
   def payouts
-    payouts= @miner.payouts
+    payouts = @miner.payouts
     @miner_payouts = payouts.map do |payout|
       MinerPayout.new(payout)
     end
@@ -46,5 +38,4 @@ class MinerFactory
   def statistics
     MinerStatistics.new(@miner.statistics)
   end
-
 end

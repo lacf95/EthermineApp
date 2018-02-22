@@ -3,7 +3,7 @@
     .card
       .card-header
         %h5 Edit Address!
-      = form_with model: @address, url: { action: "update" } , class: 'card-body' do |form|
+      = form_with model: @address, local:true, url: { action: "update" } , class: 'card-body' do |form|
         .form-group
           = form.label :address
           = form.text_field :address, class: 'form-control', placeholder: 'Your address', type: 'text'
@@ -12,8 +12,5 @@
           = form.text_field :alias, class: 'form-control', placeholder: 'Alias for this address', type: 'text'
         - flash.each do |name,msg|
           .alert.alert-danger{role: 'alert'}= msg
-        = link_to 'Regresar', (:back), class: 'btn btn-primaty'
+        = link_to 'Back', (:back), class: 'btn btn-primaty'
         = form.submit 'Edit Address', class: 'btn btn-primary'
-
-
-
