@@ -29,7 +29,7 @@ some users use the brew command
 ```
 brew install imagemagick
 ```
-For Windows users, you can dowload the .exe file Here: [Download OPtions](https://www.imagemagick.org/script/download.php)
+For Windows users, you can dowload the .exe file Here: [Download Options](https://www.imagemagick.org/script/download.php)
 
 - Postgresql
 
@@ -45,5 +45,30 @@ For Windows users, you can dowload the .exe file Here: [Download OPtions](https:
 
 * Deployment instructions
 
+First you need log in in heroku, using in your terminal, you need to
+be sure that you are in the application folder
+```
+heroku login
+```
+then you create an app on heroku running:
+```
+heroku create
+```
+and now you push your code to heroku
+```
+git push heroku master
+```
+the next step you need to migrate the dabase by running:
+```
+heroku run rake db:migrate
+```
+you can now visitn the app in your browser running:
+```
+heroku open
+```
+or you can get the URL of the app and visit in the browser running this command:
+```
+heroku apps:info
+```
 * License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
