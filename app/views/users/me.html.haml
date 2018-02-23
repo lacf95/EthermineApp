@@ -4,4 +4,53 @@
     #sidebar.col-sm-3
       = render 'sidebar'
     #main.col-sm-9
-      = render 'addresses'
+      .row
+        .col-md-12
+          %h3 My Addresses 
+          %hr
+          - if @current_user.active
+            .text-right
+              =link_to 'Add new address', new_address_path, class: 'btn btn-success'
+          - else
+            .alert.alert-warning
+              %p You need to confirmate your account to be able to add your addresses.
+              %b
+                = link_to 'Send me the confirmation mail again', send_confirm_path
+          %br
+          - flash.each do |name,msg|
+            .alert.alert-warning{role: 'alert'}
+              =msg
+          - if @addresses.addresses.count == 0
+            .alert.alert-info
+              %p
+                Here are listed all your
+                %b addresses.
+              %p It seems you don't have any, add a new address to start.
+          - else
+            - @addresses.addresses.each do |address|
+              .card
+                .card-body
+                  %h3.card-title
+                    = link_to address.alias, address_path(address), class: 'text-info'
+                  %h6.text-muted
+                    = address.address
+                  %hr
+                  %h5.card-title
+                    $ 
+                    = number_to_human(address.statistics.usd_per_min)
+                    %small.text-muted
+                      per minute
+                  %p.card-text
+                    = number_to_human(address.statistics.btc_per_min)
+                    %small.text-muted
+                      Bitcoin per minute
+                  %p.card-text
+                    = number_to_human(address.statistics.current_hashrate)
+                    %small.text-muted
+                      Hashes per second
+                .card-footer.small.text-right
+                  = link_to 'Show', address_path(address), class: 'card-link'
+                  = link_to 'Edit', edit_address_path(address), class: 'card-link'
+                  = link_to 'Delete', address_path(address), method: :delete,
+                    data: {confirm: "Delete #{address.alias} address?"}, class: 'text-danger card-link'
+              %br
