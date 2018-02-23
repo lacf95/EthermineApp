@@ -39,3 +39,18 @@ class MinerFactory
     MinerStatistics.new(@miner.statistics)
   end
 end
+
+
+class Numeric
+  def to_date
+    Time.strptime(self.to_s, '%s').to_formatted_s(:long).to_s
+  end
+
+  def to_ghs
+    "#{(self / 1_000_000_000).round(4)} GH/s"
+  end
+
+  def to_eth
+    "#{(Float(self) / 1_000_000_000_000_000_000).round(5)} ETH"
+  end
+ end

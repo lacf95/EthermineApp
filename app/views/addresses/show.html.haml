@@ -72,11 +72,12 @@
         %tbody
           -@histories.each do |history|
             %tr
-              %td= history.time
-              %td= history.reported_hashrate
-              %td= history.average_hashrate
-              %td= history.current_hashrate
+              %td= history.time.to_date
+              %td= history.reported_hashrate.to_ghs
+              %td= history.average_hashrate.to_ghs
+              %td= history.current_hashrate.to_ghs
               %td= history.valid_shares
+              %td= history.invalid_shares
               %td= history.stale_shares
               %td= history.active_workers
     .clearfix
@@ -112,10 +113,10 @@
         %tbody
           -@payouts.each do |payout|
             %tr
-              %td= payout.paid_on
+              %td= payout.paid_on.to_date
               %td= payout.start
               %td= payout.end
-              %td= payout.amount
+              %td= payout.amount.to_eth
               %td= payout.tx_hash
     .clearfix
 
@@ -168,18 +169,18 @@
           %th Btc per min
         %tbody
           %tr
-            %td= @statistics.time
-            %td= @statistics.last_seen
-            %td= @statistics.reported_hashrate
-            %td= @statistics.average_hashrate
-            %td= @statistics.current_hashrate
+            %td= @statistics.time.to_date
+            %td= @statistics.last_seen.to_date
+            %td= @statistics.reported_hashrate.to_ghs
+            %td= @statistics.average_hashrate.to_ghs
+            %td= @statistics.current_hashrate.to_ghs
             %td= @statistics.valid_shares
             %td= @statistics.invalid_shares
             %td= @statistics.stale_shares
             %td= @statistics.active_workers
-            %td= @statistics.unpaid
+            %td= @statistics.unpaid.to_eth
             %td= @statistics.unconfirmed
             %td= @statistics.coins_per_min
-            %td= @statistics.usd_per_min
-            %td= @statistics.btc_per_min
+            %td= @statistics.usd_per_min.to_eth
+            %td= @statistics.btc_per_min.to_eth
     .clearfix
