@@ -1,7 +1,7 @@
 class MinerRounds
   include EthermineAttrs
   def initialize(rounds)
-    @attrs = [:block, :amount]
+    @attrs = %i[block amount]
     @args = rounds
   end
 end
