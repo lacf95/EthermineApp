@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    " #{first_name} #{last_name} "
+    "#{first_name} #{last_name}"
   end
 
   private
@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   end
 
   def generate_token
-    Digest::SHA256.hexdigest(email + Time.now.to_i.to_s)
+    Digest::SHA256.hexdigest("#{email}#{SecureRandom.base64}")
   end
 end

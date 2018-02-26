@@ -18,11 +18,13 @@ gem 'bcrypt'
 gem 'haml-rails', '~> 1.0'
 gem 'webpacker', '~> 3.2'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
+gem 'factory_bot_rails', '~> 4.0'
 
 group :development, :test do
   gem 'pry'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
@@ -31,6 +33,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
