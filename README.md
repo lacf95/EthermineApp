@@ -35,9 +35,13 @@ For Windows users, you can dowload the .exe file Here: [Download Options](https:
 
 * Configuration
 
-* Database creation
 
-* Database initialization
+* Database initialization and Database creation
+
+run this command:
+```
+rake db:setup
+```
 
 * How to run the test suite
 
