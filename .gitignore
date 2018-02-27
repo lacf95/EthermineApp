@@ -29,3 +29,6 @@ yarn-debug.log*
 
 config/database.local.yml
 /public/system/users
+
+#Coverage
+/coverage
