@@ -45,6 +45,25 @@ rake db:setup
 
 * How to run the test suite
 
+if you want to run the test suite, you need to run:
+```
+bundle exec rspec
+```
+If you want to run an specific test file, you can add the file route 
+next to rspec, for example:
+```
+bundle exec rspec spec/models/credential_spec.rb
+```
+As you can see you can specify the test file inside of the correspondent folder
+
+Before run all the commands above you need to run: 
+```
+bundle install 
+```
+After run the rspec command, the SimpleCov gem generates a html file
+that contains the percentage of coverage data, the file is inside of
+the coverage folder
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
