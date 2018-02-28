@@ -35,7 +35,7 @@
       %h4.card-title
         Network
       .card-text.text-muted
-        = Time.at(@general_info.network.time).to_formatted_s(:short)
+        = @general_info.network.time
       %br
       .card-text
         = number_to_human(@general_info.network.block_time)

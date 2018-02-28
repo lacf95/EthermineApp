@@ -7,8 +7,9 @@ class EthermineGeneralInfoPresenter
   end
 
   def get_data
-    @pool_stats = @stats.pool_stats
-    @price = @stats.price
-    @network = @ether.pool.network
+    @pool_stats   = @stats.pool_stats
+    @price        = @stats.price
+    @network      = @ether.pool.network
+    @network.time = Time.at(@network.time).to_formatted_s(:short)
   end
 end

@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  def index
-  end
 
   def me
     @general_info = EthermineGeneralInfoPresenter.new

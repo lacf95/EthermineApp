@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Address do
   describe 'Address validation' do
-    let(:user){ create(:user) }
-    let(:address){ create(:address, user: user) }
+    let(:address){ build(:address) }
 
     it 'Address has less than 50 chars' do
       address.address *= 5
