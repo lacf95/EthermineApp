@@ -19,6 +19,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'webpacker', '~> 3.2'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
 gem 'factory_bot_rails', '~> 4.0'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   gem 'pry'
