@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
+
   get 'login' => 'credentials#index'
   delete 'logout' => 'credentials#destroy'
 
