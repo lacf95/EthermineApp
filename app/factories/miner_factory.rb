@@ -17,13 +17,6 @@ class MinerFactory
     end
   end
 
-  def blocks
-    blocks = @miner.blocks
-    @miner_blocks = blocks.map do |block|
-      MinerBlocks.new(block)
-    end
-  end
-
   def rounds
     rounds = @miner.rounds
     @miner_rounds = rounds.map do |round|
