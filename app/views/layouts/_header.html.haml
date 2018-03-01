@@ -8,4 +8,4 @@
         .float-right
           = image_tag(@current_user.avatar.url, style: 'border-radius: 50%', class: 'nav-img')
           = link_to @current_user.full_name, profile_path, class: 'badge badge-light'
-          = link_to 'Log Out', credential_path(1), method: :delete, class: 'badge badge-danger'
+          = link_to 'Log Out', logout_path, method: :delete, class: 'badge badge-danger'
