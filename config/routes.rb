@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
   get 'login' => 'credentials#index'
+  delete 'logout' => 'credentials#destroy'
 
   get 'profile' => 'users#profile'
   get 'profile/edit' => 'users#edit'
@@ -18,5 +19,5 @@ Rails.application.routes.draw do
     end
   end
   resources :addresses
-  resources :credentials, only: %i[create destroy]
+  resources :credentials, only: %i[create]
 end
