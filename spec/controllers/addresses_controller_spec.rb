@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
+  include MockMinerFactory
   let(:user){ create :user }
   let(:address){ create :address, user: user }
 
@@ -9,6 +10,7 @@ RSpec.describe AddressesController, type: :controller do
   end
 
   it 'renders the show addresses view' do
+    mock_miner_factory
     get :show, params: { id: address }
     expect(response).to be_ok
   end
@@ -56,16 +58,16 @@ RSpec.describe AddressesController, type: :controller do
       address: 'd7049af37A18BEDC9A85FE7b378f6085F17050C6',
       user_id: user.id
     } }
-    expect(response).to redirect_to edit_address_path address 
+    expect(response).to redirect_to edit_address_path address
   end
 
   it 'destroys addresses' do
-    delete :destroy, params: { id: address}
+    delete :destroy, params: { id: address }
     expect(response).to redirect_to home_index_path
   end
 
   it 'failed destroys addresses' do
-    delete :destroy, params: { id: 100}
+    delete :destroy, params: { id: 100 }
     expect(response).to redirect_to home_index_path
   end
 end
