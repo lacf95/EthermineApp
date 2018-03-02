@@ -78,7 +78,7 @@ GEM
     docile (1.1.5)
     erubi (1.7.0)
     erubis (2.7.0)
-    etherclient (0.0.1)
+    etherclient (1.0.1)
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
