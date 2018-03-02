@@ -27,8 +27,8 @@ RSpec.describe AddressesController, type: :controller do
 
   it 'create a new address' do
     post :create, params: { address: {
-      alias: 'test',
-      address: 'd7049af37A18BEDC9A85FE7b378f6085F17050C6',
+      alias: address.alias,
+      address: address.address,
       user: user
     } }
     expect(response).to redirect_to home_index_path
@@ -37,7 +37,7 @@ RSpec.describe AddressesController, type: :controller do
   it 'failed creating an incomplete address' do
     post :create, params: { address: {
       alias: '',
-      address: 'd7049af37A18BEDC9A85FE7b378f6085F17050C6',
+      address: address.address,
       user: user
     } }
     expect(response).to redirect_to new_address_path
@@ -45,8 +45,8 @@ RSpec.describe AddressesController, type: :controller do
 
   it 'edit an address' do
     patch :update, params: { id: address, address: {
-      alias: 'test',
-      address: 'd7049af37A18BEDC9A85FE7b378f6085F17050C6',
+      alias: address.alias,
+      address: address.address,
       user_id: user.id
     } }
     expect(response).to redirect_to address
@@ -55,7 +55,7 @@ RSpec.describe AddressesController, type: :controller do
   it 'failed edit an incomplete address' do
     patch :update, params: { id: address, address: {
       alias: '',
-      address: 'd7049af37A18BEDC9A85FE7b378f6085F17050C6',
+      address: address.address,
       user_id: user.id
     } }
     expect(response).to redirect_to edit_address_path address
