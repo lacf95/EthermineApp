@@ -36,19 +36,19 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    if @address.destroy
+    if @address
+      @address.destroy
       flash[:notice] = 'The address was succesfully deleted'
       redirect_to home_index_path
     else
-      flash[:error] = @address.errors_full_messages.to_sentence
-      redirect_to @address
+      redirect_to home_index_path
     end
   end
 
   private
 
   def find_address
-    @address = Address.find(params[:id])
+    @address = Address.find_by(id: params[:id])
   end
 
   def address_params
@@ -61,6 +61,5 @@ class AddressesController < ApplicationController
     @histories = @min_factory.histories
     @rounds = @min_factory.rounds
     @payouts = @min_factory.payouts
-    @blocks = @min_factory.blocks
   end
 end

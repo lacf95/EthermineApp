@@ -82,25 +82,6 @@
               %td= history.active_workers
     .clearfix
 
-  #block.tab-pane.fade{"aria-labelledby" => "block-tab", :role => "tabpanel"}
-    .table-responsive
-      %table#mytable.table.table-bordred.table-striped
-        %thead
-          %th Paid on
-          %th Number
-          %th Type
-          %th Amount 
-          %th Tx hash
-        %tbody
-          -@blocks.each do |block|
-            %tr
-              %td= block.paid_on
-              %td= block.number
-              %td= block.type
-              %td= block.amount
-              %td= block.tx_hash
-    .clearfix
-
   #payout.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"} 
     .table-responsive
       %table#mytable.table.table-bordred.table-striped
