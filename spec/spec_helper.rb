@@ -1,5 +1,9 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group 'Factories', 'app/factories'
+  add_group 'Presenters', 'app/presenters'
+  add_filter '/app/channels'
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
