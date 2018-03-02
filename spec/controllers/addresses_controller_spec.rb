@@ -11,7 +11,7 @@ RSpec.describe AddressesController, type: :controller do
 
   it 'renders the show addresses view' do
     mock_miner_factory
-    get :show, params: { id: address }
+    get :show, params: address.as_json
     expect(response).to be_ok
   end
 
@@ -21,48 +21,34 @@ RSpec.describe AddressesController, type: :controller do
   end
 
   it 'renders the edit addresses view' do
-    get :edit, params: { id: address }
+    get :edit, params: address.as_json
     expect(response).to be_ok
   end
 
   it 'create a new address' do
-    post :create, params: { address: {
-      alias: address.alias,
-      address: address.address,
-      user: user
-    } }
+    post :create, params: address.as_json(root: true)
     expect(response).to redirect_to home_index_path
   end
-  
+ 
   it 'failed creating an incomplete address' do
-    post :create, params: { address: {
-      alias: '',
-      address: address.address,
-      user: user
-    } }
+    address.alias = ''
+    post :create, params: address.as_json(root: true)
     expect(response).to redirect_to new_address_path
   end
 
   it 'edit an address' do
-    patch :update, params: { id: address, address: {
-      alias: address.alias,
-      address: address.address,
-      user_id: user.id
-    } }
+    patch :update, params: { id: address, address: address.as_json }
     expect(response).to redirect_to address
   end
 
   it 'failed edit an incomplete address' do
-    patch :update, params: { id: address, address: {
-      alias: '',
-      address: address.address,
-      user_id: user.id
-    } }
+    address.alias = ''
+    patch :update, params: { id: address, address: address.as_json }
     expect(response).to redirect_to edit_address_path address
   end
 
   it 'destroys addresses' do
-    delete :destroy, params: { id: address }
+    delete :destroy, params: address.as_json
     expect(response).to redirect_to home_index_path
   end
 
