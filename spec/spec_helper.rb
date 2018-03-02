@@ -3,6 +3,9 @@ SimpleCov.start 'rails' do
   add_group 'Factories', 'app/factories'
   add_group 'Presenters', 'app/presenters'
   add_filter '/app/channels'
+  add_filter '/app/jobs'
+  add_filter '/app/models/application_record.rb'
+
 end
 
 RSpec.configure do |config|
