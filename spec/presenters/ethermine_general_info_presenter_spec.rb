@@ -17,6 +17,6 @@ RSpec.describe EthermineGeneralInfoPresenter do
  end
 
  it 'responds network method' do
-   expect(ether.network).to_not eq EtherClient::Model::PoolNetwork
+   expect(ether.network.class).to eq EtherClient::Model::PoolNetwork
  end
 end
