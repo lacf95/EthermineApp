@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe EthermineGeneralInfoPresenter do
  ether = EthermineGeneralInfoPresenter.new
 
- it 'if the elements are initialized' do
+ it 'the elements are initialized' do
    expect(ether).to_not eq nil
  end
 
