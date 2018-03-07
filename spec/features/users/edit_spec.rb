@@ -16,7 +16,7 @@ RSpec.describe 'Edit', type: :feature do
     fill_in 'user[last_name]', with: user.last_name
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
-    find_field('user[avatar]').set('/home/iaor/Descargas/profile.jpg')
+    find_field('user[avatar]').set(Rails.root + 'spec/assets/profile.jpg')
     click_button 'Save Changes'
     expect(page).to have_content user.first_name
     user.reload
