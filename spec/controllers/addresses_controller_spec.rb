@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
   include MockMinerFactory
-  let!(:user){ create :user }
-  let!(:address){ create :address, user: user }
+  let!(:user) { create :user }
+  let!(:address) { create :address, user: user }
 
   before do
     session[:user_id] = user.id
@@ -34,16 +34,19 @@ RSpec.describe AddressesController, type: :controller do
   describe 'POST #create' do
     context 'with complete params' do
       it 'create a new address' do
+        expect {
         post :create, params: address.as_json(root: true)
+        }.to change(Address, :count).by(1)
         expect(response).to redirect_to home_index_path
       end
     end
 
-
     context 'with incomplete params' do
       it 'failed creating' do
         address.alias = ''
-        post :create, params: address.as_json(root: true)
+        expect {
+          post :create, params: address.as_json(root: true)
+        }.to change(Address, :count).by(0)
         expect(response).to redirect_to new_address_path
       end
     end

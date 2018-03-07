@@ -22,15 +22,15 @@ RSpec.describe MinerFactory do
     it 'Has rounds inside' do
       expect(@miner.rounds).to_not eq nil
     end
-    
+
     it 'Has history inside' do
       expect(@miner.histories).to_not eq nil
     end
-    
+
     it 'Has statistics inside' do
       expect(@miner.statistics).to_not eq nil
     end
-    
+
     it 'Has settings inside' do
       expect(@miner.settings).to_not eq nil
     end
@@ -40,7 +40,7 @@ RSpec.describe MinerFactory do
     end
 
     it 'Hasn\'t information' do
-      expect{@miner.settings.emails}.to raise_error(NoMethodError)
+      expect { @miner.settings.emails }.to raise_error(NoMethodError)
     end
 
     it 'Convert unix timestamp to date' do
