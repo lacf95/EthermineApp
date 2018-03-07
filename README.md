@@ -49,7 +49,7 @@ if you want to run the test suite, you need to run:
 ```
 bundle exec rspec
 ```
-If you want to run an specific test file, you can add the file route 
+If you want to run a specific test file, you can add the file route 
 next to rspec, for example:
 ```
 bundle exec rspec spec/models/credential_spec.rb
@@ -60,7 +60,7 @@ Before run all the commands above you need to run:
 ```
 bundle install 
 ```
-After run the rspec command, the SimpleCov gem generates a html file
+After run the rspec command, the SimpleCov gem generates an HTML file
 that contains the percentage of coverage data, the file is inside of
 the coverage folder
 
