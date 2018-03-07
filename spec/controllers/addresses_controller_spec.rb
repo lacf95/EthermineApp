@@ -29,7 +29,7 @@ RSpec.describe AddressesController, type: :controller do
     post :create, params: address.as_json(root: true)
     expect(response).to redirect_to home_index_path
   end
- 
+
   it 'failed creating an incomplete address' do
     address.alias = ''
     post :create, params: address.as_json(root: true)
