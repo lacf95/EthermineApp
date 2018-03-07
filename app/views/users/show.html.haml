@@ -3,7 +3,7 @@
   .col-xs-10.offset-xs-1.col-md-4.offset-md-4
     .card
       %div
-        = image_tag(@current_user.avatar.url, style: 'max-width: 150px', class: 'mx-auto d-block', alt: 'avatar')
+        = image_tag(@current_user.avatar.url, style: 'max-width: 150px', class: 'mx-auto d-block', alt: 'avatar', id: 'user_avatar')
       .card-header
         User Information:
         .list-group.list-group-flush
